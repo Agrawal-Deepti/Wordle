@@ -97,15 +97,21 @@ stat = {
         "6": 0
     }
 }
+
+
+def build_stat_and_print(fstat, fwon_game, fguessed_in_trial):
+    fstat["won_game"] = fstat["won_game"] + fwon_game
+    fstat["number_of_game_played"] = fstat["number_of_game_played"] + 1
+    fstat["current_streak"] = fstat["won_game"]
+    fstat["max_streak"] = fstat["won_game"]
+    fstat["win_percent"] = (fstat["won_game"] * 100)/fstat["number_of_game_played"]
+    if fguessed_in_trial > 0:
+        fstat["guessDistribution"][str(fguessed_in_trial)] = fstat["guessDistribution"][str(fguessed_in_trial)] + 1
+    print('Number of Games Played %d\nWin percentage %d%%\nGuess Distribution %s\n'
+          % (fstat["number_of_game_played"], fstat["win_percent"], str(fstat["guessDistribution"])))
+
+
 while True:  # After success or failure, user will be presented with a new challenge
     won_game, guessed_in_trial = start_wordle_game()
-    stat["won_game"] = stat["won_game"] + won_game
-    stat["number_of_game_played"] = stat["number_of_game_played"] + 1
-    stat["current_streak"] = stat["won_game"]
-    stat["max_streak"] = stat["won_game"]
-    stat["win_percent"] = (stat["won_game"] * 100)/stat["number_of_game_played"]
-    if guessed_in_trial > 0:
-        stat["guessDistribution"][str(guessed_in_trial)] = stat["guessDistribution"][str(guessed_in_trial)] + 1
-    print('Number of Games Played %d\nWin percentage %d%%\nGuess Distribution %s\n'
-          % (stat["number_of_game_played"], stat["win_percent"], str(stat["guessDistribution"])))
+    build_stat_and_print(stat, won_game, guessed_in_trial)
 
