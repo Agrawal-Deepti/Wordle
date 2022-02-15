@@ -32,6 +32,7 @@ def start_wordle_game():
     # is in the correct spot, incorrect spot, or not in any spot.
 
     attempts_allowed = 6  # allowed attempt to guess hidden word
+    guessed_in_trial = 0
     for trial in range(attempts_allowed):
         guessed_word = ui.get_word_from_user(len(hidden_word), guessed_words)
         guessed_words.append(guessed_word)  # keep track of guessed words
@@ -40,8 +41,9 @@ def start_wordle_game():
         determine_accuracy_per_character(is_char_matched, hidden_word, guessed_word)
 
         if hidden_word == guessed_word:
-            print('You guessed the correct hidden word in %d trials! \n' % trial)
+            print('You guessed the correct hidden word in %d trials! \n' % (trial + 1))
             won_game = 1
+            guessed_in_trial = trial + 1
             break
         elif (trial + 1) == attempts_allowed:
             print('Game Ended - You could not guess the hidden word in %d attempts, Try luck other time! \n'
@@ -50,7 +52,7 @@ def start_wordle_game():
             print("Guessed word did not matched at %s , attempt left %d, please try again! "
                   % (is_char_matched, (attempts_allowed - trial - 1)))  # inform user which char are correct,
             # incorrect, or at wrong spot
-    return won_game
+    return won_game, guessed_in_trial
 
 
 def determine_accuracy_per_character(is_char_matched, hidden_word, guessed_word):
@@ -80,11 +82,29 @@ def determine_accuracy_per_character(is_char_matched, hidden_word, guessed_word)
             is_char_matched[index] = '"'  # not in any spot
 
 
-numberOfGamePlayed = 0
-won_game = 0
+stat = {
+    "number_of_game_played": 0,
+    "won_game": 0,
+    "win_percent": 0,
+    "current_streak": 0,
+    "max_streak": 0,
+    "guessDistribution": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0
+    }
+}
 while True:  # After success or failure, user will be presented with a new challenge
-    won_game = won_game + start_wordle_game()
-    numberOfGamePlayed = numberOfGamePlayed + 1
-    print('Number of Games Played %d\nWin percentage %d%%\n'
-          % (numberOfGamePlayed, (won_game * 100)/numberOfGamePlayed))
+    won_game, guessed_in_trial = start_wordle_game()
+    stat["won_game"] = stat["won_game"] + won_game
+    stat["number_of_game_played"] = stat["number_of_game_played"] + 1
+    stat["current_streak"] = stat["won_game"]
+    stat["max_streak"] = stat["won_game"]
+    stat["win_percent"] = (stat["won_game"] * 100)/stat["number_of_game_played"]
+    stat["guessDistribution"][str(guessed_in_trial)] = stat["guessDistribution"][str(guessed_in_trial)] + 1
+    print('Number of Games Played %d\nWin percentage %d%%\nGuess Distribution %s\n'
+          % (stat["number_of_game_played"], stat["win_percent"], str(stat["guessDistribution"])))
 
