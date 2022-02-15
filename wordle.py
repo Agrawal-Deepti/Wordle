@@ -104,7 +104,8 @@ while True:  # After success or failure, user will be presented with a new chall
     stat["current_streak"] = stat["won_game"]
     stat["max_streak"] = stat["won_game"]
     stat["win_percent"] = (stat["won_game"] * 100)/stat["number_of_game_played"]
-    stat["guessDistribution"][str(guessed_in_trial)] = stat["guessDistribution"][str(guessed_in_trial)] + 1
+    if guessed_in_trial > 0:
+        stat["guessDistribution"][str(guessed_in_trial)] = stat["guessDistribution"][str(guessed_in_trial)] + 1
     print('Number of Games Played %d\nWin percentage %d%%\nGuess Distribution %s\n'
           % (stat["number_of_game_played"], stat["win_percent"], str(stat["guessDistribution"])))
 
