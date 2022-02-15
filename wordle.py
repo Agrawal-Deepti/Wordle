@@ -22,6 +22,7 @@ def start_wordle_game():
     """
     # Hidden word to guess
     print('\nStarting New Game, Good Luck!')
+    won_game = 0
     hidden_word = dictionary.fetch_random_five_letter_word().lower()  # Hidden word to guess
 
     guessed_words = []  # Guessed words to cover scenario if user enters any prior word,
@@ -40,15 +41,16 @@ def start_wordle_game():
 
         if hidden_word == guessed_word:
             print('You guessed the correct hidden word in %d trials! \n' % trial)
+            won_game = 1
             break
         elif (trial + 1) == attempts_allowed:
             print('Game Ended - You could not guess the hidden word in %d attempts, Try luck other time! \n'
                   % attempts_allowed)
         else:
             print("Guessed word did not matched at %s , attempt left %d, please try again! "
-                  "[*: Guessed but incorrect spot, _: Incorrect guess]"
                   % (is_char_matched, (attempts_allowed - trial - 1)))  # inform user which char are correct,
             # incorrect, or at wrong spot
+    return won_game
 
 
 def determine_accuracy_per_character(is_char_matched, hidden_word, guessed_word):
@@ -78,5 +80,11 @@ def determine_accuracy_per_character(is_char_matched, hidden_word, guessed_word)
             is_char_matched[index] = '"'  # not in any spot
 
 
+numberOfGamePlayed = 0
+won_game = 0
 while True:  # After success or failure, user will be presented with a new challenge
-    start_wordle_game()
+    won_game = won_game + start_wordle_game()
+    numberOfGamePlayed = numberOfGamePlayed + 1
+    print('Number of Games Played %d\nWin percentage %d%%\n'
+          % (numberOfGamePlayed, (won_game * 100)/numberOfGamePlayed))
+
