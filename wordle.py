@@ -133,3 +133,37 @@ class WordleTest (unittest.TestCase):
         determine_accuracy_per_character(char_matched, "being", "gains")
         self.assertNotEquals(char_matched, ['"', '"', "i", "n", '"'])
 
+    def test_build_stat_positive(self) -> None:
+        """determine accuracy of character in word"""
+        statInput = {
+            "number_of_game_played": 0,
+            "won_game": 0,
+            "win_percent": 0,
+            "current_streak": 0,
+            "max_streak": 0,
+            "guessDistribution": {
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 0,
+                "5": 0,
+                "6": 0
+            }
+        }
+        statOutput = {
+            "number_of_game_played": 1,
+            "won_game": 1,
+            "win_percent": 100,
+            "current_streak": 1,
+            "max_streak": 1,
+            "guessDistribution": {
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 0,
+                "5": 1,
+                "6": 0
+            }
+        }
+        build_stat_and_print(statInput, 1, 5)
+        self.assertEquals(statInput, statOutput)
