@@ -2,10 +2,8 @@ import ui as ui
 import dictionary as dictionary
 """
 Author - Deepti Agrawal
-Assignment 4 - Create a free GitHub account and deploy the prior assignments' code and improve the game to keep 
-statistics of plays to be displayed when the user quits.
+Assignment 5 - Test automation using unit testing.
 
-Prior Assignments - Modular Wordle game
 Design a program that would allow a user to enter their word as an input, and then indicate whether the letters matched
 with the expected 5 letter words from dictionary 
 Important Note - Please download 'http://mathcenter.oxford.emory.edu/site/math117/probSetAllTogether/words.txt' 
