@@ -41,21 +41,21 @@ def start_wordle_game():
         determine_accuracy_per_character(is_char_matched, hidden_word, guessed_word)
 
         if hidden_word == guessed_word:
-            print('You guessed the correct hidden word in %d trials! \n' % (trial + 1))
+            print(f'You guessed the correct hidden word in {(trial + 1)} trials! \n')
             won_game = 1
             guessed_in_trial = trial + 1
             break
         elif (trial + 1) == attempts_allowed:
-            print('Game Ended - You could not guess the hidden word in %d attempts, Try luck other time! \n'
-                  % attempts_allowed)
+            print(f'Game Ended - You could not guess the hidden word in {attempts_allowed} attempts, '
+                  f'Try luck other time!\n')
         else:
-            print("Guessed word did not matched at %s , attempt left %d, please try again! "
-                  % (is_char_matched, (attempts_allowed - trial - 1)))  # inform user which char are correct,
+            print(f"Guessed word did not matched at {is_char_matched} , attempt left {(attempts_allowed - trial - 1)}"
+                  f", please try again! ")  # inform user which char are correct,
             # incorrect, or at wrong spot
     return won_game, guessed_in_trial
 
 
-def determine_accuracy_per_character(is_char_matched, hidden_word, guessed_word):
+def determine_accuracy_per_character(is_char_matched, hidden_word: str, guessed_word: str):
     """
     Determines accuracy of each char in guessed word
         - correct spot - letter itself
@@ -99,7 +99,7 @@ stat = {
 }
 
 
-def build_stat_and_print(fstat, fwon_game, fguessed_in_trial):
+def build_stat_and_print(fstat, fwon_game: int, fguessed_in_trial: int):
     fstat["won_game"] = fstat["won_game"] + fwon_game
     fstat["number_of_game_played"] = fstat["number_of_game_played"] + 1
     fstat["current_streak"] = fstat["won_game"]
@@ -107,11 +107,15 @@ def build_stat_and_print(fstat, fwon_game, fguessed_in_trial):
     fstat["win_percent"] = (fstat["won_game"] * 100)/fstat["number_of_game_played"]
     if fguessed_in_trial > 0:
         fstat["guessDistribution"][str(fguessed_in_trial)] = fstat["guessDistribution"][str(fguessed_in_trial)] + 1
-    print('Number of Games Played %d\nWin percentage %d%%\nGuess Distribution %s\n'
-          % (fstat["number_of_game_played"], fstat["win_percent"], str(fstat["guessDistribution"])))
+    print(f'Number of Games Played {fstat["number_of_game_played"]}\nWin percentage {fstat["win_percent"]}%\n'
+          f'Guess Distribution {str(fstat["guessDistribution"])}\n')
 
 
-while True:  # After success or failure, user will be presented with a new challenge
-    won_game, guessed_in_trial = start_wordle_game()
-    build_stat_and_print(stat, won_game, guessed_in_trial)
+def start():
+    while True:  # After success or failure, user will be presented with a new challenge
+        won_game, guessed_in_trial = start_wordle_game()
+        build_stat_and_print(stat, won_game, guessed_in_trial)
+
+
+start()
 

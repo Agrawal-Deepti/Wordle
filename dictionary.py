@@ -26,7 +26,7 @@ def fetch_random_five_letter_word():
     return random.choice(get_five_letter_words_from_file())
 
 
-def is_five_Letter_word_exist(word):
+def is_five_Letter_word_exist(word: str):
     """
     Checks if 5-letter word exist or not
     Parameters:

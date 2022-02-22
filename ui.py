@@ -13,7 +13,7 @@ def get_user_input():
     return input("Enter your word as an input to guess:").lower()
 
 
-def get_word_from_user(word_length, guessed_words):
+def get_word_from_user(word_length: int, guessed_words: str):
     """
     Validate user inputter word, validate -
         empty string,
@@ -55,7 +55,7 @@ def get_word_from_user(word_length, guessed_words):
     return guessed_word
 
 
-def is_input_empty(guessed_word):
+def is_input_empty(guessed_word: str):
     """
     Checks if guessed word is empty or not
     Parameters:
@@ -67,7 +67,7 @@ def is_input_empty(guessed_word):
     return guessed_word == "" or guessed_word is None
 
 
-def is_word_length_matching_with_hidden_word(hidden_word_length, guessed_word):
+def is_word_length_matching_with_hidden_word(hidden_word_length: int, guessed_word: str):
     """
     Checks if guessed word length is matching with hidden word or not
     Parameters:
@@ -80,7 +80,7 @@ def is_word_length_matching_with_hidden_word(hidden_word_length, guessed_word):
     return hidden_word_length == len(guessed_word)
 
 
-def is_already_guessed_word(already_guessed_words, guessed_word):
+def is_already_guessed_word(already_guessed_words: list[str], guessed_word: str):
     """
     Checks if guessed word is in already guessed words
     Parameters:
@@ -93,7 +93,7 @@ def is_already_guessed_word(already_guessed_words, guessed_word):
     return guessed_word in already_guessed_words
 
 
-def is_word_contain_digit(word):
+def is_word_contain_digit(word: str):
     """
     Checks if guessed word contain number
     Parameters:
@@ -105,7 +105,7 @@ def is_word_contain_digit(word):
     return any(char.isdigit() for char in word)
 
 
-def is_word_contains_in_dictionary(word):
+def is_word_contains_in_dictionary(word: str):
     """
     Checks if guessed word contain in 5-letter dictionary words
     Parameters:
