@@ -1,5 +1,5 @@
 import random
-
+import unittest
 
 def get_five_letter_words_from_file():
     """
@@ -39,3 +39,41 @@ def is_five_Letter_word_exist(word):
 
 
 get_five_letter_words_from_file()
+
+
+class DictionaryTest(unittest.TestCase):
+
+    def test_fetch_random_five_letter_word_positive(self) -> None:
+        """Test fetched random five-letter word is not none"""
+        self.assertIsNotNone(fetch_random_five_letter_word())
+
+    def test_fetch_random_five_letter_word_length_check_positive(self) -> None:
+        """Test length of random letter word is equals to five"""
+        self.assertEqual(len(fetch_random_five_letter_word()), 5)
+
+    def test_fetch_random_five_letter_word_length_check_negative(self) -> None:
+        """Test length of random letter word is not equals to five"""
+        self.assertNotEquals(len(fetch_random_five_letter_word()), 6)
+
+    def test_is_five_Letter_word_exist_positive(self) -> None:
+        """Test five-letter word is exist"""
+        self.assertTrue(is_five_Letter_word_exist("about"))
+
+    def test_is_five_Letter_word_exist_negative(self) -> None:
+        """Test five-letter word is exist"""
+        self.assertFalse(is_five_Letter_word_exist("couch"))
+
+    def test_get_five_letter_words_from_file_positive(self) -> None:
+        """Test five-letter word received from dictionary """
+        self.assertIn("about", get_five_letter_words_from_file())
+
+    def test_get_five_letter_words_from_file_negative(self) -> None:
+        """Test if dictionary contains greater than 5-letter word """
+        self.assertNotIn("greater", get_five_letter_words_from_file())
+
+    def test_get_five_letter_words_from_file_size(self) -> None:
+        """Test size of the returned list is greater then zero"""
+        self.assertGreater(len(get_five_letter_words_from_file()), 0)
+
+
+
