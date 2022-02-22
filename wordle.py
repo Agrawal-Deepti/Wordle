@@ -1,5 +1,6 @@
 import ui as ui
 import dictionary as dictionary
+import unittest
 """
 Author - Deepti Agrawal
 Assignment 5 - Test automation using unit testing.
@@ -115,5 +116,20 @@ def start():
         build_stat_and_print(stat, won_game, guessed_in_trial)
 
 
-start()
+if __name__ == "__main__":
+    start()
+
+
+class WordleTest (unittest.TestCase):
+    def test_determine_accuracy_per_character_positive(self) -> None:
+        """determine accuracy of character in word"""
+        char_matched = ['"', '"', '"', '"', '"']
+        determine_accuracy_per_character(char_matched, "being", "gains")
+        self.assertEquals(char_matched, ['`', '"', "i", "n", '"'])
+
+    def test_determine_accuracy_per_character_negative(self) -> None:
+        """determine accuracy of character in word"""
+        char_matched = ['"', '"', '"', '"', '"']
+        determine_accuracy_per_character(char_matched, "being", "gains")
+        self.assertNotEquals(char_matched, ['"', '"', "i", "n", '"'])
 
