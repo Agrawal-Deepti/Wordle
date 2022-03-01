@@ -1,0 +1,28 @@
+2022-02-28 23:25:23.774197 - wordle - *********************NEW GAME STARTED******************
+2022-02-28 23:25:23.778277 - wordle - Starting New Game, Good Luck!
+2022-02-28 23:25:23.786397 - wordle - Hidden word is - radio
+2022-02-28 23:25:30.329597 - ui - User input is - about
+2022-02-28 23:25:30.332388 - ui - User input - about is valid True
+2022-02-28 23:25:30.332388 - wordle - Guessed word did not matched at ['`', '"', '`', '"', '"'] , attempt left 5, please try again! 
+2022-02-28 23:25:46.517737 - ui - User input is - radio
+2022-02-28 23:25:46.520821 - ui - User input - radio is valid True
+2022-02-28 23:25:46.520821 - wordle - You guessed the correct hidden word in 2 trials! 
+
+2022-02-28 23:25:46.520821 - wordle - Number of Games Played 1
+Win percentage 100.0%
+Guess Distribution {'1': 0, '2': 1, '3': 0, '4': 0, '5': 0, '6': 0}
+
+2022-02-28 23:25:46.530556 - wordle - *********************NEW GAME STARTED******************
+2022-02-28 23:25:46.531002 - wordle - Starting New Game, Good Luck!
+2022-02-28 23:25:46.538572 - wordle - Hidden word is - since
+2022-02-28 23:26:44.552451 - ui - User input is - since
+2022-02-28 23:26:44.556389 - ui - User input - since is valid True
+2022-02-28 23:26:44.556389 - wordle - You guessed the correct hidden word in 1 trials! 
+
+2022-02-28 23:26:44.560415 - wordle - Number of Games Played 2
+Win percentage 100.0%
+Guess Distribution {'1': 1, '2': 1, '3': 0, '4': 0, '5': 0, '6': 0}
+
+2022-02-28 23:26:44.560415 - wordle - *********************NEW GAME STARTED******************
+2022-02-28 23:26:44.560415 - wordle - Starting New Game, Good Luck!
+2022-02-28 23:26:44.572426 - wordle - Hidden word is - chaos
