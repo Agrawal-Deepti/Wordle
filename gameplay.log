@@ -1,0 +1,85 @@
+2022-03-01 01:35:08.500816 - wordle - *********************NEW GAME STARTED******************
+2022-03-01 01:35:08.500816 - wordle - Starting New Game, Good Luck!
+2022-03-01 01:35:08.505894 - wordle - Hidden word is - chose
+2022-03-01 01:35:11.426188 - ui - User input is - about
+2022-03-01 01:35:11.427213 - ui - User input - about is valid True
+2022-03-01 01:35:11.427213 - wordle - Guessed word did not matched at ['"', '"', 'o', '"', '"'] , attempt left 5, please try again! 
+2022-03-01 01:35:21.551368 - ui - User input is - chose
+2022-03-01 01:35:21.555889 - ui - User input - chose is valid True
+2022-03-01 01:35:21.555889 - wordle - You guessed the correct hidden word in 2 trials! 
+
+2022-03-01 01:35:21.555889 - wordle - Number of Games Played 1
+Win percentage 100.0%
+Guess Distribution {'1': 0, '2': 1, '3': 0, '4': 0, '5': 0, '6': 0}
+
+2022-03-01 01:35:21.560363 - wordle - *********************NEW GAME STARTED******************
+2022-03-01 01:35:21.560363 - wordle - Starting New Game, Good Luck!
+2022-03-01 01:35:21.573712 - wordle - Hidden word is - swiss
+2022-03-01 01:35:31.856421 - ui - User input is - abc01
+2022-03-01 01:35:31.856421 - ui - Word can not contain number, please try again!
+2022-03-01 01:35:35.187316 - ui - User input is - abc^&
+2022-03-01 01:35:35.187316 - ui - Word can not contain special character, please try again!
+2022-03-01 01:35:39.196280 - ui - User input is - about
+2022-03-01 01:35:39.200317 - ui - User input - about is valid True
+2022-03-01 01:35:39.200317 - wordle - Guessed word did not matched at ['"', '"', '"', '"', '"'] , attempt left 5, please try again! 
+2022-03-01 01:35:45.118340 - ui - User input is - about
+2022-03-01 01:35:45.126285 - ui - You have already guessed this word, please guess some other word!
+2022-03-01 01:36:03.476457 - ui - User input is - zatyo
+2022-03-01 01:36:03.486124 - ui - Word is not in dictionary, please guess some other word!
+2022-03-01 01:36:16.176210 - ui - User input is - io
+2022-03-01 01:36:16.186344 - ui - Word length is not matching, please try again!
+2022-03-01 01:36:30.039031 - ui - User input is - swiss
+2022-03-01 01:36:30.045878 - ui - User input - swiss is valid True
+2022-03-01 01:36:30.045878 - wordle - You guessed the correct hidden word in 2 trials! 
+
+2022-03-01 01:36:30.045878 - wordle - Number of Games Played 2
+Win percentage 100.0%
+Guess Distribution {'1': 0, '2': 2, '3': 0, '4': 0, '5': 0, '6': 0}
+
+2022-03-01 01:36:30.045878 - wordle - *********************NEW GAME STARTED******************
+2022-03-01 01:36:30.045878 - wordle - Starting New Game, Good Luck!
+2022-03-01 01:36:30.056319 - wordle - Hidden word is - based
+2022-03-01 01:36:36.786266 - ui - User input is - about
+2022-03-01 01:36:36.796328 - ui - User input - about is valid True
+2022-03-01 01:36:36.796328 - wordle - Guessed word did not matched at ['`', '`', '"', '"', '"'] , attempt left 5, please try again! 
+2022-03-01 01:36:42.508357 - ui - User input is - carry
+2022-03-01 01:36:42.516084 - ui - User input - carry is valid True
+2022-03-01 01:36:42.516084 - wordle - Guessed word did not matched at ['"', 'a', '"', '"', '"'] , attempt left 4, please try again! 
+2022-03-01 01:36:46.358769 - ui - User input is - patch
+2022-03-01 01:36:46.359779 - ui - User input - patch is valid True
+2022-03-01 01:36:46.359779 - wordle - Guessed word did not matched at ['"', 'a', '"', '"', '"'] , attempt left 3, please try again! 
+2022-03-01 01:36:59.676501 - ui - User input is - catch
+2022-03-01 01:36:59.686443 - ui - User input - catch is valid True
+2022-03-01 01:36:59.686443 - wordle - Guessed word did not matched at ['"', 'a', '"', '"', '"'] , attempt left 2, please try again! 
+2022-03-01 01:37:04.131006 - ui - User input is - swiss
+2022-03-01 01:37:04.137686 - ui - User input - swiss is valid True
+2022-03-01 01:37:04.137686 - wordle - Guessed word did not matched at ['`', '"', '"', '"', '"'] , attempt left 1, please try again! 
+2022-03-01 01:37:08.328458 - ui - User input is - point
+2022-03-01 01:37:08.334236 - ui - User input - point is valid True
+2022-03-01 01:37:08.334236 - wordle - Game Ended - You could not guess the hidden word in 6 attempts, Try luck other time!
+
+2022-03-01 01:37:08.334236 - wordle - Number of Games Played 3
+Win percentage 66.66666666666667%
+Guess Distribution {'1': 0, '2': 2, '3': 0, '4': 0, '5': 0, '6': 0}
+
+2022-03-01 01:37:08.336254 - wordle - *********************NEW GAME STARTED******************
+2022-03-01 01:37:08.336254 - wordle - Starting New Game, Good Luck!
+2022-03-01 01:37:08.338507 - wordle - Hidden word is - early
+2022-03-01 01:37:17.686302 - ui - User input is - about
+2022-03-01 01:37:17.696087 - ui - User input - about is valid True
+2022-03-01 01:37:17.696087 - wordle - Guessed word did not matched at ['`', '"', '"', '"', '"'] , attempt left 5, please try again! 
+2022-03-01 01:37:20.196163 - ui - User input is - early
+2022-03-01 01:37:20.196163 - ui - User input - early is valid True
+2022-03-01 01:37:20.196163 - wordle - You guessed the correct hidden word in 2 trials! 
+
+2022-03-01 01:37:20.196163 - wordle - Number of Games Played 4
+Win percentage 75.0%
+Guess Distribution {'1': 0, '2': 3, '3': 0, '4': 0, '5': 0, '6': 0}
+
+2022-03-01 01:37:20.206036 - wordle - *********************NEW GAME STARTED******************
+2022-03-01 01:37:20.206036 - wordle - Starting New Game, Good Luck!
+2022-03-01 01:37:20.216079 - wordle - Hidden word is - aside
+2022-03-01 01:37:22.316288 - ui - User input is - 
+2022-03-01 01:37:22.316288 - ui - Game Ended, thanks for playing wordle game!
+2022-03-01 01:37:22.316288 - ui - *******************GAME TERMINATED********************
+
