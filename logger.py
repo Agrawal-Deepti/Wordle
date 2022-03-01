@@ -1,6 +1,10 @@
 from datetime import datetime
 
 
+def get_log_file(log_file_name="gameplay.log"):
+    return log_file_name
+
+
 def log(module_name, log_line):
     """
     Log module name and log line
@@ -9,7 +13,4 @@ def log(module_name, log_line):
         log_line(str): Log Line
     Returns: None
     """
-    open("gameplay.log", 'a+').write(f'{datetime.now()} - {module_name} - {log_line}\n')
-
-
-
+    open(get_log_file(), 'a+').write(f'{datetime.now()} - {module_name} - {log_line}\n')
