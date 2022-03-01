@@ -1,12 +1,6 @@
 import random
 import unittest
 
-import logger
-import utility
-
-already_used_five_letter_hidden_words = []
-
-
 def get_five_letter_words_from_file():
     """
     Filters 5-letter words from dictionary and return in array
@@ -15,24 +9,11 @@ def get_five_letter_words_from_file():
         Array of 5-letter words
     """
     five_letter_words = []
-    five_letter_words_file_name = "fiveLetterWords.txt"
-    utility.extract_fiveletterwords_and_create_newFile(five_letter_words_file_name)
-    file = open(five_letter_words_file_name, "r")
+    file = open("words.txt", "r")
     for line in file:
-        five_letter_words.append(line.strip().lower())
+        if len(line.strip()) == 5:
+            five_letter_words.append(line.strip().lower())
     return five_letter_words
-
-
-def is_hidden_word_already_used(new_hidden_word):
-    is_already_used = False
-    global already_used_five_letter_hidden_words
-    if len(get_five_letter_words_from_file()) == len(already_used_five_letter_hidden_words):
-        already_used_five_letter_hidden_words = []
-        logger.log("dictionary", f'All hidden words are utilized, resetting already used five letter words!')
-    is_already_used = new_hidden_word in already_used_five_letter_hidden_words
-    if new_hidden_word not in already_used_five_letter_hidden_words:
-        already_used_five_letter_hidden_words.append(new_hidden_word)
-    return is_already_used
 
 
 def fetch_random_five_letter_word():
@@ -42,12 +23,7 @@ def fetch_random_five_letter_word():
     Returns: random word(str)
         random 5-letter word from dictionary
     """
-    five_letter_words = get_five_letter_words_from_file()
-    new_hidden_word = random.choice(five_letter_words)
-    while is_hidden_word_already_used(new_hidden_word):
-        logger.log("dictionary", f'Hidden word already used - {new_hidden_word}, fetching new word!')
-        new_hidden_word = random.choice(five_letter_words)
-    return new_hidden_word
+    return random.choice(get_five_letter_words_from_file())
 
 
 def is_five_Letter_word_exist(word: str):

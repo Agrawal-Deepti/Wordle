@@ -1,7 +1,6 @@
 import ui as ui
 import dictionary as dictionary
 import unittest
-import logger
 """
 Author - Deepti Agrawal
 Assignment 5 - Test automation using unit testing.
@@ -22,11 +21,8 @@ def start_wordle_game():
     """
     # Hidden word to guess
     print('\nStarting New Game, Good Luck!')
-    logger.log("wordle", "*********************NEW GAME STARTED******************")
-    logger.log("wordle", f'Starting New Game, Good Luck!')
     won_game = 0
     hidden_word = dictionary.fetch_random_five_letter_word().lower()  # Hidden word to guess
-    logger.log("wordle", f'Hidden word is - {hidden_word}')
 
     guessed_words = []  # Guessed words to cover scenario if user enters any prior word,
     # they are warned to enter a new word without reducing from the word count.
@@ -44,20 +40,14 @@ def start_wordle_game():
         determine_accuracy_per_character(is_char_matched, hidden_word, guessed_word)
 
         if hidden_word == guessed_word:
-            logger.log("wordle", f'You guessed the correct hidden word in {(trial + 1)} trials! \n')
             print(f'You guessed the correct hidden word in {(trial + 1)} trials! \n')
             won_game = 1
             guessed_in_trial = trial + 1
             break
         elif (trial + 1) == attempts_allowed:
-            logger.log("wordle", f'Game Ended - You could not guess the hidden word in {attempts_allowed} attempts, '
-                                 f'Try luck other time!\n')
             print(f'Game Ended - You could not guess the hidden word in {attempts_allowed} attempts, '
                   f'Try luck other time!\n')
         else:
-            logger.log("wordle", f"Guessed word did not matched at {is_char_matched} , "
-                                 f"attempt left {(attempts_allowed - trial - 1)}"
-                                 f", please try again! ")
             print(f"Guessed word did not matched at {is_char_matched} , attempt left {(attempts_allowed - trial - 1)}"
                   f", please try again! ")  # inform user which char are correct,
             # incorrect, or at wrong spot
@@ -116,8 +106,6 @@ def build_stat_and_print(fstat, fwon_game: int, fguessed_in_trial: int):
     fstat["win_percent"] = (fstat["won_game"] * 100)/fstat["number_of_game_played"]
     if fguessed_in_trial > 0:
         fstat["guessDistribution"][str(fguessed_in_trial)] = fstat["guessDistribution"][str(fguessed_in_trial)] + 1
-    logger.log("wordle", f'Number of Games Played {fstat["number_of_game_played"]}\nWin percentage {fstat["win_percent"]}%\n'
-          f'Guess Distribution {str(fstat["guessDistribution"])}\n')
     print(f'Number of Games Played {fstat["number_of_game_played"]}\nWin percentage {fstat["win_percent"]}%\n'
           f'Guess Distribution {str(fstat["guessDistribution"])}\n')
 
