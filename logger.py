@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from typing import IO
 import unittest
 from unittest.mock import patch
 
@@ -16,7 +17,15 @@ def log(module_name, log_line):
         log_line(str): Log Line
     Returns: None
     """
-    open(get_log_file(), 'a+').write(f'{datetime.now()} - {module_name} - {log_line}\n')
+    try:
+        log_file: IO = open(get_log_file(), 'a+')
+    except FileNotFoundError:
+        print(f"Can't open file {get_log_file()}")
+    else:
+        with log_file:
+            log_file.write(f'{datetime.now()} - {module_name} - {log_line}\n')
+    finally:
+        log_file.close()
 
 
 class LoggerTest (unittest.TestCase):

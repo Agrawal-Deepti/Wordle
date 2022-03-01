@@ -28,42 +28,46 @@ def get_word_from_user(word_length: int, guessed_words: str):
         guessed_words([str]): previously guessed words
     Returns: guessed_word(str) - user inputted word if passes all criteria as per requirement
     """
-    is_input_valid = False
-    guessed_word = ""
-    while not is_input_valid:
-        guessed_word = get_user_input()
-        logger.log("ui", f'User input is - {guessed_word}')
-        if is_input_empty(guessed_word):
-            logger.log("ui", f'Game Ended, thanks for playing wordle game!')
-            logger.log("ui", "*******************GAME TERMINATED********************\n")
-            sys.exit("Game Ended, thanks for playing wordle game!")
-        if not is_word_length_matching_with_hidden_word(word_length, guessed_word):
-            # if guessed word length is not matching with hidden word, then don't count attempt
-            print("Word length is not matching, please try again!")
-            logger.log("ui", f'Word length is not matching, please try again!')
-            continue
-        if is_word_contain_digit(guessed_word):  # if guessed word contains number, then don't count attempt
-            print("Word can not contain number, please try again!")
-            logger.log("ui", f'Word can not contain number, please try again!')
-            continue
-        if not guessed_word.isalpha():  # if guessed word contains special char, then don't count attempt
-            print("Word can not contain special character, please try again!")
-            logger.log("ui", f'Word can not contain special character, please try again!')
-            continue
-        if is_already_guessed_word(guessed_words, guessed_word):
-            # if guessed word is already guessed, then don't count attempt
-            print("You have already guessed this word, please guess some other word!")
-            logger.log("ui", f'You have already guessed this word, please guess some other word!')
-            continue
-        if not is_word_contains_in_dictionary(guessed_word):
-            print("Word is not in dictionary, please guess some other word!")
-            logger.log("ui", f'Word is not in dictionary, please guess some other word!')
-            continue
+    try:
+        is_input_valid = False
+        guessed_word = ""
+        while not is_input_valid:
+            guessed_word = get_user_input()
+            logger.log("ui", f'User input is - {guessed_word}')
+            if is_input_empty(guessed_word):
+                logger.log("ui", f'Game Ended, thanks for playing wordle game!')
+                logger.log("ui", "*******************GAME TERMINATED********************\n")
+                sys.exit("Game Ended, thanks for playing wordle game!")
+            if not is_word_length_matching_with_hidden_word(word_length, guessed_word):
+                # if guessed word length is not matching with hidden word, then don't count attempt
+                print("Word length is not matching, please try again!")
+                logger.log("ui", f'Word length is not matching, please try again!')
+                continue
+            if is_word_contain_digit(guessed_word):  # if guessed word contains number, then don't count attempt
+                print("Word can not contain number, please try again!")
+                logger.log("ui", f'Word can not contain number, please try again!')
+                continue
+            if not guessed_word.isalpha():  # if guessed word contains special char, then don't count attempt
+                print("Word can not contain special character, please try again!")
+                logger.log("ui", f'Word can not contain special character, please try again!')
+                continue
+            if is_already_guessed_word(guessed_words, guessed_word):
+                # if guessed word is already guessed, then don't count attempt
+                print("You have already guessed this word, please guess some other word!")
+                logger.log("ui", f'You have already guessed this word, please guess some other word!')
+                continue
+            if not is_word_contains_in_dictionary(guessed_word):
+                print("Word is not in dictionary, please guess some other word!")
+                logger.log("ui", f'Word is not in dictionary, please guess some other word!')
+                continue
 
-        is_input_valid = True
+            is_input_valid = True
 
-    logger.log("ui", f'User input - {guessed_word} is valid {is_input_valid}')
-    return guessed_word
+        logger.log("ui", f'User input - {guessed_word} is valid {is_input_valid}')
+
+        return guessed_word
+    except ValueError:
+        logger.log("ui", f'User input error')
 
 
 def is_input_empty(guessed_word: str):

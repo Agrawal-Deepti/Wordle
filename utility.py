@@ -1,5 +1,7 @@
 import os
 import unittest
+from typing import IO
+
 
 def extract_fiveletterwords_and_create_newFile(five_letter_word_file_name):
     """
@@ -7,13 +9,18 @@ def extract_fiveletterwords_and_create_newFile(five_letter_word_file_name):
     Parameters: five_letter_word_file_name - file name
     Returns: None
     """
-    file = open("words.txt", "r")
-    five_letter_word_file = open(five_letter_word_file_name, 'w')
-    for line in file:
-        if len(line.strip()) == 5:
-            five_letter_word_file.write(line)
-
-
+    try:
+        all_words_file: IO = open("words.txt", "r")
+        five_letter_word_file: IO = open(five_letter_word_file_name, 'w')
+    except FileNotFoundError:
+        print(f"Can't open file words.txt or {five_letter_word_file_name}")
+    else:
+        for line in all_words_file:
+            if len(line.strip()) == 5:
+                five_letter_word_file.write(line)
+    finally:
+        all_words_file.close()
+        five_letter_word_file.close()
 
 class UtilityTest (unittest.TestCase):
     def test_extract_fiveletterwords_and_create_newFile_positive(self) -> None:
