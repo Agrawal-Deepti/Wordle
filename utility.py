@@ -1,3 +1,5 @@
+import os
+import unittest
 
 def extract_fiveletterwords_and_create_newFile(five_letter_word_file_name):
     """
@@ -10,3 +12,25 @@ def extract_fiveletterwords_and_create_newFile(five_letter_word_file_name):
     for line in file:
         if len(line.strip()) == 5:
             five_letter_word_file.write(line)
+
+
+
+class UtilityTest (unittest.TestCase):
+    def test_extract_fiveletterwords_and_create_newFile_positive(self) -> None:
+        """Test file gets created"""
+        test_file_path = 'testFiveLetterWords.txt'
+        extract_fiveletterwords_and_create_newFile(test_file_path)
+        self.assertTrue(os.path.exists(test_file_path))
+
+    def test_extract_fiveletterwords_and_create_newFile_negative(self) -> None:
+        """Test file gets created"""
+        test_file_path = 'testFiveLetterWords.txt'
+        extract_fiveletterwords_and_create_newFile(test_file_path)
+        self.assertFalse(not os.path.exists(test_file_path))
+
+    def test_extract_fiveletterwords_and_create_newFile_positive(self) -> None:
+        """Test file gets created"""
+        test_file_path = 'testFiveLetterWords.txt'
+        extract_fiveletterwords_and_create_newFile(test_file_path)
+        self.assertTrue(open(test_file_path, "r").readline() != "")
+        
