@@ -99,5 +99,14 @@ class DictionaryTest(unittest.TestCase):
         """Test size of the returned list is greater then zero"""
         self.assertGreater(len(get_five_letter_words_from_file()), 0)
 
+    def test_is_hidden_word_already_used_positive(self) -> None:
+        """Test hidden word already used"""
+        global already_used_five_letter_hidden_words
+        already_used_five_letter_hidden_words = ["about"]
+        self.assertTrue(is_hidden_word_already_used("about"))
 
-
+    def test_is_hidden_word_already_used_negative(self) -> None:
+        """Test hidden word already not used"""
+        global already_used_five_letter_hidden_words
+        already_used_five_letter_hidden_words = []
+        self.assertFalse(is_hidden_word_already_used("about"))

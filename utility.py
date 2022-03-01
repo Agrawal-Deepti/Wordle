@@ -23,13 +23,13 @@ class UtilityTest (unittest.TestCase):
         self.assertTrue(os.path.exists(test_file_path))
 
     def test_extract_fiveletterwords_and_create_newFile_negative(self) -> None:
-        """Test file gets created"""
+        """Test file doesnt get created"""
         test_file_path = 'testFiveLetterWords.txt'
         extract_fiveletterwords_and_create_newFile(test_file_path)
         self.assertFalse(not os.path.exists(test_file_path))
 
     def test_extract_fiveletterwords_and_create_newFile_positive(self) -> None:
-        """Test file gets created"""
+        """Test file gets created and logs are getting appended"""
         test_file_path = 'testFiveLetterWords.txt'
         extract_fiveletterwords_and_create_newFile(test_file_path)
         self.assertTrue(open(test_file_path, "r").readline() != "")
