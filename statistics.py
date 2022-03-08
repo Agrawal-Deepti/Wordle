@@ -1,3 +1,5 @@
+import os
+import unittest
 from typing import IO
 import dictionary
 
@@ -120,3 +122,103 @@ def generate_occurrence_statistics():
 
 
 generate_occurrence_statistics()
+
+
+class StatisticsTest (unittest.TestCase):
+    def test_get_five_letter_words_from_file_convert_to_tuple_instance_positive(self) -> None:
+        """
+        test list is getting converted to tuple correctly
+        :return: None
+        """
+        self.assertTrue(type(get_five_letter_words_from_file_convert_to_tuple()), tuple)
+
+    def test_generate_letter_occurrence_positive(self) -> None:
+        """
+        test letter occurrence is correct
+        :return: None
+        """
+        dictionary_words = ("apple", "adios", "sonar", "rings")
+        letter_occurrence = generate_letter_occurrence(dictionary_words)
+        self.assertEquals(letter_occurrence.get("a"), [2, 0, 0, 1, 0])
+
+    def test_generate_letter_occurrence_negative(self) -> None:
+        """
+        test letter occurrence is not incorrect
+        :return: None
+        """
+        dictionary_words = ("apple", "adios", "sonar", "rings")
+        letter_occurrence = generate_letter_occurrence(dictionary_words)
+        self.assertNotEquals(letter_occurrence.get("d"), [2, 0, 0, 1, 0])
+
+    def test_obtain_letter_likelihood_positive(self) -> None:
+        """
+        test letter likelihood is correct
+        :return: None
+        """
+        dictionary_words = ("apple", "adios", "sonar", "rings")
+        letter_occurrence = generate_letter_occurrence(dictionary_words)
+        letter_likelihood = obtain_letter_likelihood(letter_occurrence, len(dictionary_words))
+        self.assertEquals(letter_likelihood.get("a"), [0.5, 0, 0, 0.25, 0])
+
+    def test_obtain_letter_likelihood_negative(self) -> None:
+        """
+        test letter likelihood is not incorrect
+        :return: None
+        """
+        dictionary_words = ("apple", "adios", "sonar", "rings")
+        letter_occurrence = generate_letter_occurrence(dictionary_words)
+        letter_likelihood = obtain_letter_likelihood(letter_occurrence, len(dictionary_words))
+        self.assertNotEquals(letter_likelihood.get("d"), [0.5, 0, 0, 0.25, 0])
+
+    def test_write_letter_frequency_positive(self) -> None:
+        """
+        test letter frequency file gets created properly
+        :return: None
+        """
+        test_file_path = 'testLetterFrequency.txt'
+        dictionary_words = ("apple", "adios", "sonar", "rings")
+        letter_occurrence = generate_letter_occurrence(dictionary_words)
+        letter_likelihood = obtain_letter_likelihood(letter_occurrence, len(dictionary_words))
+        write_letter_frequency(letter_likelihood, test_file_path)
+        self.assertTrue(os.path.exists(test_file_path))
+
+    def test_generate_word_ranks_positive(self) -> None:
+        """
+        test word rank gets calculated correctly
+        :return: None
+        """
+        test_file_path = 'testLetterFrequency.txt'
+        dictionary_words = ("apple", "adios", "sonar", "rings")
+        letter_occurrence = generate_letter_occurrence(dictionary_words)
+        letter_likelihood = obtain_letter_likelihood(letter_occurrence, len(dictionary_words))
+        write_letter_frequency(letter_likelihood, test_file_path)
+        word_ranks = generate_word_ranks(dictionary_words, letter_likelihood)
+        self.assertEquals(word_ranks.get("apple"), 0.001953125)
+
+    def test_generate_word_ranks_Negative(self) -> None:
+        """
+        test word rank doesn't get's calculated incorrectly
+        :return: None
+        """
+        test_file_path = 'testLetterFrequency.txt'
+        dictionary_words = ("apple", "adios", "sonar", "rings")
+        letter_occurrence = generate_letter_occurrence(dictionary_words)
+        letter_likelihood = obtain_letter_likelihood(letter_occurrence, len(dictionary_words))
+        write_letter_frequency(letter_likelihood, test_file_path)
+        word_ranks = generate_word_ranks(dictionary_words, letter_likelihood)
+        self.assertNotEquals(word_ranks.get("adios"), 0.001953125)
+
+    def test_write_word_rank_positive(self) -> None:
+        """
+        test word rank files gets created properly
+        :return: None
+        """
+        test_file_path = 'testLetterFrequency.txt'
+        dictionary_words = ("apple", "adios", "sonar", "rings")
+        letter_occurrence = generate_letter_occurrence(dictionary_words)
+        letter_likelihood = obtain_letter_likelihood(letter_occurrence, len(dictionary_words))
+        write_letter_frequency(letter_likelihood, test_file_path)
+        word_ranks = generate_word_ranks(dictionary_words, letter_likelihood)
+        test_file_path_word_rank = 'testWordRank.csv'
+        write_word_rank(word_ranks, test_file_path_word_rank)
+        self.assertTrue(os.path.exists(test_file_path_word_rank))
