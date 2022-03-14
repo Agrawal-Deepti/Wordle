@@ -5,27 +5,34 @@ import unittest
 from unittest.mock import patch
 
 
-def get_log_file(log_file_name="gameplay.log"):
-    return log_file_name
+class Logger(object):
 
+    def __init__(self, module_name, log_file_name="gameplay.log"):
+        self.module_name = module_name
+        self.log_file_name = log_file_name
 
-def log(module_name, log_line):
-    """
-    Log module name and log line
-    Parameters:
-        module_name(str): Module name
-        log_line(str): Log Line
-    Returns: None
-    """
-    try:
-        log_file: IO = open(get_log_file(), 'a+')
-    except FileNotFoundError:
-        print(f"Can't open file {get_log_file()}")
-    else:
-        with log_file:
-            log_file.write(f'{datetime.now()} - {module_name} - {log_line}\n')
-    finally:
-        log_file.close()
+    def __str__(self):
+        return f"Module is {self.module_name} anf log file name is {self.log_file_name}"
+
+    def get_log_file(self):
+        return self.log_file_name
+
+    def log(self, log_line):
+        """
+        Log module name and log line
+        Parameters:
+            log_line(str): Log Line
+        Returns: None
+        """
+        try:
+            log_file: IO = open(self.get_log_file(), 'a+')
+        except FileNotFoundError:
+            print(f"Can't open file {self.get_log_file()}")
+        else:
+            with log_file:
+                log_file.write(f'{datetime.now()} - {self.module_name} - {log_line}\n')
+        finally:
+            log_file.close()
 
 
 class LoggerTest (unittest.TestCase):

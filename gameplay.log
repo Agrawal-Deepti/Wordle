@@ -83,3 +83,95 @@ Guess Distribution {'1': 0, '2': 3, '3': 0, '4': 0, '5': 0, '6': 0}
 2022-03-01 01:37:22.316288 - ui - Game Ended, thanks for playing wordle game!
 2022-03-01 01:37:22.316288 - ui - *******************GAME TERMINATED********************
 
+2022-03-14 00:28:02.440819 - wordle - *********************NEW GAME STARTED******************
+2022-03-14 00:28:02.440819 - wordle - Starting New Game, Good Luck!
+2022-03-14 00:28:02.440819 - wordle - Hidden word is - state
+2022-03-14 00:28:36.174789 - wordle - *********************NEW GAME STARTED******************
+2022-03-14 00:28:36.174789 - wordle - Starting New Game, Good Luck!
+2022-03-14 00:28:36.177822 - wordle - Hidden word is - marco
+2022-03-14 00:28:36.177822 - ui - Initializing UI
+2022-03-14 00:28:48.427746 - ui - User input is - aside
+2022-03-14 00:28:48.443972 - ui - User input - aside is valid True
+2022-03-14 00:28:48.443972 - wordle - Guessed word did not matched at ['`', '"', '"', '"', '"'] , attempt left 5, please try again! 
+2022-03-14 00:29:18.220737 - ui - User input is - marco
+2022-03-14 00:29:18.220737 - ui - User input - marco is valid True
+2022-03-14 00:29:18.220737 - wordle - You guessed the correct hidden word in 2 trials! 
+
+2022-03-14 00:29:18.220737 - wordle - Number of Games Played 1
+Win percentage 100.0%
+Guess Distribution {'1': 0, '2': 1, '3': 0, '4': 0, '5': 0, '6': 0}
+
+2022-03-14 00:29:18.220737 - wordle - *********************NEW GAME STARTED******************
+2022-03-14 00:29:18.232452 - wordle - Starting New Game, Good Luck!
+2022-03-14 00:29:18.237028 - wordle - Hidden word is - sizes
+2022-03-14 00:29:18.237028 - ui - Initializing UI
+2022-03-14 01:35:44.412930 - Wordle - *********************NEW GAME STARTED******************
+2022-03-14 01:35:44.412930 - Wordle - Starting New Game, Good Luck!
+2022-03-14 01:38:42.791732 - Wordle - *********************NEW GAME STARTED******************
+2022-03-14 01:38:42.791732 - Wordle - Starting New Game, Good Luck!
+2022-03-14 01:38:42.791732 - utility - Initializing Utility
+2022-03-14 01:38:42.791732 - utility - Initializing Utility
+2022-03-14 01:38:42.808452 - Wordle - Hidden word is - seems
+2022-03-14 01:38:42.808452 - UI - Initializing UI
+2022-03-14 01:38:47.661640 - UI - User input is - asdfg
+2022-03-14 01:41:00.377633 - Wordle - *********************NEW GAME STARTED******************
+2022-03-14 01:41:00.377633 - Wordle - Starting New Game, Good Luck!
+2022-03-14 01:41:00.377633 - utility - Initializing Utility
+2022-03-14 01:41:00.377633 - utility - Initializing Utility
+2022-03-14 01:41:00.377633 - Wordle - Hidden word is - robin
+2022-03-14 01:41:00.377633 - UI - Initializing UI
+2022-03-14 01:41:03.246495 - UI - User input is - asdfg
+2022-03-14 01:41:03.246495 - utility - Initializing Utility
+2022-03-14 01:41:03.246495 - UI - Word is not in dictionary, please guess some other word!
+2022-03-14 01:41:08.730542 - UI - User input is - swf45
+2022-03-14 01:41:08.730542 - UI - Word can not contain number, please try again!
+2022-03-14 01:41:10.323928 - UI - User input is - asd
+2022-03-14 01:41:10.323928 - UI - Word length is not matching, please try again!
+2022-03-14 01:41:15.714458 - UI - User input is - #$%^&*
+2022-03-14 01:41:15.714458 - UI - Word length is not matching, please try again!
+2022-03-14 01:41:20.393394 - UI - User input is - $%^&*
+2022-03-14 01:41:20.393394 - UI - Word can not contain special character, please try again!
+2022-03-14 01:41:30.564134 - UI - User input is - about
+2022-03-14 01:41:30.564134 - utility - Initializing Utility
+2022-03-14 01:41:30.580417 - UI - User input - about is valid True
+2022-03-14 01:41:30.583035 - Wordle - Guessed word did not matched at ['"', '`', '`', '"', '"'] , attempt left 5, please try again! 
+2022-03-14 01:41:32.774296 - UI - User input is - about
+2022-03-14 01:41:32.774296 - UI - You have already guessed this word, please guess some other word!
+2022-03-14 01:41:46.245533 - UI - User input is - asdfg
+2022-03-14 01:41:46.245533 - utility - Initializing Utility
+2022-03-14 01:41:46.245533 - UI - Word is not in dictionary, please guess some other word!
+2022-03-14 01:41:58.588598 - UI - User input is - asjd(
+2022-03-14 01:41:58.588598 - UI - Word can not contain special character, please try again!
+2022-03-14 01:42:03.430538 - UI - User input is - aska0
+2022-03-14 01:42:03.434718 - UI - Word can not contain number, please try again!
+2022-03-14 01:42:18.057355 - UI - User input is - as
+2022-03-14 01:42:18.057355 - UI - Word length is not matching, please try again!
+2022-03-14 01:42:47.376908 - UI - User input is - sizes
+2022-03-14 01:42:47.376908 - utility - Initializing Utility
+2022-03-14 01:42:47.376908 - UI - User input - sizes is valid True
+2022-03-14 01:42:47.376908 - Wordle - Guessed word did not matched at ['"', '`', '"', '"', '"'] , attempt left 4, please try again! 
+2022-03-14 01:43:02.316718 - UI - User input is - robin
+2022-03-14 01:43:02.316718 - utility - Initializing Utility
+2022-03-14 01:43:02.316718 - UI - User input - robin is valid True
+2022-03-14 01:43:02.322996 - Wordle - You guessed the correct hidden word in 3 trials! 
+
+2022-03-14 01:43:02.323784 - Wordle - Number of Games Played 1
+Win percentage 100.0%
+Guess Distribution {'1': 0, '2': 0, '3': 1, '4': 0, '5': 0, '6': 0}
+
+2022-03-14 01:43:02.324767 - Wordle - *********************NEW GAME STARTED******************
+2022-03-14 01:43:02.324767 - Wordle - Starting New Game, Good Luck!
+2022-03-14 01:43:02.324767 - utility - Initializing Utility
+2022-03-14 01:43:02.330262 - utility - Initializing Utility
+2022-03-14 01:43:02.334824 - Wordle - Hidden word is - towns
+2022-03-14 01:43:02.335324 - UI - Initializing UI
+2022-03-14 01:43:09.317159 - UI - User input is - 
+2022-03-14 01:43:09.317159 - UI - Game Ended, thanks for playing wordle game!
+2022-03-14 01:43:09.317159 - UI - *******************GAME TERMINATED********************
+
+2022-03-14 01:43:42.399936 - Statistics - Initializing Statistics
+2022-03-14 01:43:42.399936 - utility - Initializing Utility
+2022-03-14 01:44:04.605744 - Statistics - Initializing Statistics
+2022-03-14 01:44:04.605744 - utility - Initializing Utility
+2022-03-14 01:44:16.153223 - Statistics - Initializing Statistics
+2022-03-14 01:44:16.156507 - utility - Initializing Utility
