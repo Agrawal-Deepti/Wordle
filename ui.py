@@ -141,50 +141,52 @@ class UI(object):
 
 
 class UITest (unittest.TestCase):
+    __ui = UI(5)
+
     def test_is_word_contains_in_dictionary_positive(self) -> None:
         """Test word contains in dictionary"""
-        self.assertTrue(is_word_contains_in_dictionary("about"))
+        self.assertTrue(self.__ui.is_word_contains_in_dictionary("about"))
 
     def test_is_word_contains_in_dictionary_negative(self) -> None:
         """Test word does not contain in dictionary"""
-        self.assertFalse(is_word_contains_in_dictionary("couch"))
+        self.assertFalse(self.__ui.is_word_contains_in_dictionary("couch"))
 
     def test_is_word_contain_digit_positive(self) -> None:
         """Test word contains digit"""
-        self.assertTrue(is_word_contain_digit("abou1"))
+        self.assertTrue(self.__ui.is_word_contain_digit("abou1"))
 
     def test_is_word_contain_digit_negative(self) -> None:
         """Test word doesnt not contain digit"""
-        self.assertFalse(is_word_contain_digit("couch"))
+        self.assertFalse(self.__ui.is_word_contain_digit("couch"))
 
     def test_is_already_guessed_word_positive(self) -> None:
         """Test word is already guessed word"""
         already_guessed_words = ["about"]
-        self.assertTrue(is_already_guessed_word(already_guessed_words, "about"))
+        self.assertTrue(self.__ui.is_already_guessed_word(already_guessed_words, "about"))
 
     def test_is_already_guessed_word_negative(self) -> None:
         """Test word is not guessed word"""
         already_guessed_words = ["about"]
-        self.assertFalse(is_already_guessed_word(already_guessed_words, "couch"))
+        self.assertFalse(self.__ui.is_already_guessed_word(already_guessed_words, "couch"))
 
     def test_is_word_length_matching_with_hidden_word_positive(self) -> None:
         """Test guessed word length matching with hidden word"""
-        self.assertTrue(is_word_length_matching_with_hidden_word(5, "about"))
+        self.assertTrue(self.__ui.is_word_length_matching_with_hidden_word("about"))
 
     def test_is_word_length_matching_with_hidden_word_negative(self) -> None:
         """Test guessed word length is not matching with hidden word"""
-        self.assertFalse(is_word_length_matching_with_hidden_word(5, "boss"))
+        self.assertFalse(self.__ui.is_word_length_matching_with_hidden_word("boss"))
 
     def test_is_input_empty_positive(self) -> None:
         """Test input empty"""
-        self.assertTrue(is_input_empty(""))
+        self.assertTrue(self.__ui.is_input_empty(""))
 
     def test_is_input_empty_negative(self) -> None:
         """Test input is not empty"""
-        self.assertFalse(is_input_empty("about"))
+        self.assertFalse(self.__ui.is_input_empty("about"))
 
     @patch('builtins.input', return_value="about")
     def test_get_user_input_positive(self, mock_input):
         """Test user input"""
         mock_guessed_word = mock_input()
-        self.assertTrue(get_user_input() == mock_guessed_word)
+        self.assertTrue(self.__ui.get_user_input() == mock_guessed_word)

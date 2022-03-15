@@ -31,7 +31,6 @@ class Dictionary(object):
         return five_letter_words
 
     def is_hidden_word_already_used(self, new_hidden_word):
-        self.already_used_five_letter_hidden_words
         if len(self.get_five_letter_words_from_file()) == len(self.already_used_five_letter_hidden_words):
             self.already_used_five_letter_hidden_words = []
             Logger("dictionary").log(f'All hidden words are utilized, resetting already used five letter words!')
@@ -70,47 +69,46 @@ class Dictionary(object):
 
 
 class DictionaryTest(unittest.TestCase):
+    __dictionary = Dictionary()
 
     def test_fetch_random_five_letter_word_positive(self) -> None:
         """Test fetched random five-letter word is not none"""
-        self.assertIsNotNone(fetch_random_five_letter_word())
+        self.assertIsNotNone(self.__dictionary.fetch_random_five_letter_word())
 
     def test_fetch_random_five_letter_word_length_check_positive(self) -> None:
         """Test length of random letter word is equals to five"""
-        self.assertEqual(len(fetch_random_five_letter_word()), 5)
+        self.assertEqual(len(self.__dictionary.fetch_random_five_letter_word()), 5)
 
     def test_fetch_random_five_letter_word_length_check_negative(self) -> None:
         """Test length of random letter word is not equals to five"""
-        self.assertNotEquals(len(fetch_random_five_letter_word()), 6)
+        self.assertNotEquals(len(self.__dictionary.fetch_random_five_letter_word()), 6)
 
     def test_is_five_Letter_word_exist_positive(self) -> None:
         """Test five-letter word is exist"""
-        self.assertTrue(is_five_Letter_word_exist("about"))
+        self.assertTrue(self.__dictionary.is_five_Letter_word_exist("about"))
 
     def test_is_five_Letter_word_exist_negative(self) -> None:
         """Test five-letter word is exist"""
-        self.assertFalse(is_five_Letter_word_exist("couch"))
+        self.assertFalse(self.__dictionary.is_five_Letter_word_exist("couch"))
 
     def test_get_five_letter_words_from_file_positive(self) -> None:
         """Test five-letter word received from dictionary """
-        self.assertIn("about", get_five_letter_words_from_file())
+        self.assertIn("about", self.__dictionary.get_five_letter_words_from_file())
 
     def test_get_five_letter_words_from_file_negative(self) -> None:
         """Test if dictionary contains greater than 5-letter word """
-        self.assertNotIn("greater", get_five_letter_words_from_file())
+        self.assertNotIn("greater", self.__dictionary.get_five_letter_words_from_file())
 
     def test_get_five_letter_words_from_file_size(self) -> None:
         """Test size of the returned list is greater then zero"""
-        self.assertGreater(len(get_five_letter_words_from_file()), 0)
+        self.assertGreater(len(self.__dictionary.get_five_letter_words_from_file()), 0)
 
     def test_is_hidden_word_already_used_positive(self) -> None:
         """Test hidden word already used"""
-        global already_used_five_letter_hidden_words
-        already_used_five_letter_hidden_words = ["about"]
-        self.assertTrue(is_hidden_word_already_used("about"))
+        self.__dictionary.already_used_five_letter_hidden_words = ["about"]
+        self.assertTrue(self.__dictionary.is_hidden_word_already_used("about"))
 
     def test_is_hidden_word_already_used_negative(self) -> None:
         """Test hidden word already not used"""
-        global already_used_five_letter_hidden_words
-        already_used_five_letter_hidden_words = []
-        self.assertFalse(is_hidden_word_already_used("about"))
+        self.__dictionary.already_used_five_letter_hidden_words = []
+        self.assertFalse(self.__dictionary.is_hidden_word_already_used("about"))

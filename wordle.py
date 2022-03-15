@@ -141,16 +141,18 @@ if __name__ == "__main__":
 
 
 class WordleTest (unittest.TestCase):
+    __wordle = Wordle()
+
     def test_determine_accuracy_per_character_positive(self) -> None:
         """determine accuracy of character in word"""
         char_matched = ['"', '"', '"', '"', '"']
-        determine_accuracy_per_character(char_matched, "being", "gains")
+        self.__wordle.determine_accuracy_per_character(char_matched, "being", "gains")
         self.assertEquals(char_matched, ['`', '"', "i", "n", '"'])
 
     def test_determine_accuracy_per_character_negative(self) -> None:
         """determine accuracy of character in word"""
         char_matched = ['"', '"', '"', '"', '"']
-        determine_accuracy_per_character(char_matched, "being", "gains")
+        self.__wordle.determine_accuracy_per_character(char_matched, "being", "gains")
         self.assertNotEquals(char_matched, ['"', '"', "i", "n", '"'])
 
     def test_build_stat_positive(self) -> None:
@@ -185,5 +187,5 @@ class WordleTest (unittest.TestCase):
                 "6": 0
             }
         }
-        build_stat_and_print(statInput, 1, 5)
+        self.__wordle.build_stat_and_print(statInput, 1, 5)
         self.assertEquals(statInput, statOutput)

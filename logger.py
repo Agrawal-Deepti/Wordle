@@ -40,21 +40,20 @@ class LoggerTest (unittest.TestCase):
     def test_log_file_created_sucessfully_positive(self) -> None:
         """Test file gets created"""
         test_file_path = 'testgameplay.log'
-        with patch("logger.get_log_file") as patched_function:
-            patched_function.return_value = test_file_path
-            log("logger", "test case")
+        __logger = Logger("Logger", test_file_path)
+        __logger.log("test case1 - test_log_file_created_sucessfully_positive")
         self.assertTrue(os.path.exists(test_file_path))
 
     def test_log_file_created_sucessfully_Negative(self) -> None:
         """Test file gets created"""
         test_file_path = 'testgameplay.log'
-        with patch("logger.get_log_file") as patched_function:
-            patched_function.return_value = test_file_path
-            log("logger", "test case")
+        __logger = Logger("Logger", test_file_path)
+        __logger.log("test case2 - test_log_file_created_sucessfully_Negative")
         self.assertFalse(not os.path.exists(test_file_path))
 
     def test_logs_are_getting_appended_positive(self) -> None:
         """Test file gets created"""
         test_file_path = 'testgameplay.log'
-        log("logger", "test case")
+        __logger = Logger("Logger", test_file_path)
+        __logger.log("test case3 - test_logs_are_getting_appended_positive")
         self.assertTrue(open(test_file_path, "r").readline() != "")
