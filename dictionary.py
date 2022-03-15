@@ -10,8 +10,17 @@ class Dictionary(object):
     def __init__(self):
         self.already_used_five_letter_hidden_words = []
 
+    def get_already_used_five_letter_hidden_words(self):
+        return self.already_used_five_letter_hidden_words
+
+    def set_already_used_five_letter_hidden_words(self, already_used_five_letter_hidden_words):
+        self.already_used_five_letter_hidden_words = already_used_five_letter_hidden_words
+
+    def add_already_used_five_letter_hidden_words(self, new_hidden_word):
+        self.already_used_five_letter_hidden_words.append(new_hidden_word)
+
     def __str__(self):
-        return f"Already used five letter hidden words are {self.already_used_five_letter_hidden_words}"
+        return f"Already used five letter hidden words are {self.get_already_used_five_letter_hidden_words()}"
 
     @staticmethod
     def get_five_letter_words_from_file():
@@ -31,12 +40,12 @@ class Dictionary(object):
         return five_letter_words
 
     def is_hidden_word_already_used(self, new_hidden_word):
-        if len(self.get_five_letter_words_from_file()) == len(self.already_used_five_letter_hidden_words):
-            self.already_used_five_letter_hidden_words = []
+        if len(self.get_five_letter_words_from_file()) == len(self.get_already_used_five_letter_hidden_words()):
+            self.set_already_used_five_letter_hidden_words([])
             Logger("dictionary").log(f'All hidden words are utilized, resetting already used five letter words!')
-        is_already_used = new_hidden_word in self.already_used_five_letter_hidden_words
-        if new_hidden_word not in self.already_used_five_letter_hidden_words:
-            self.already_used_five_letter_hidden_words.append(new_hidden_word)
+        is_already_used = new_hidden_word in self.get_already_used_five_letter_hidden_words()
+        if new_hidden_word not in self.get_already_used_five_letter_hidden_words():
+            self.add_already_used_five_letter_hidden_words(new_hidden_word)
         return is_already_used
 
     def fetch_random_five_letter_word(self):
@@ -105,10 +114,10 @@ class DictionaryTest(unittest.TestCase):
 
     def test_is_hidden_word_already_used_positive(self) -> None:
         """Test hidden word already used"""
-        self.__dictionary.already_used_five_letter_hidden_words = ["about"]
+        self.__dictionary.set_already_used_five_letter_hidden_words(["about"])
         self.assertTrue(self.__dictionary.is_hidden_word_already_used("about"))
 
     def test_is_hidden_word_already_used_negative(self) -> None:
         """Test hidden word already not used"""
-        self.__dictionary.already_used_five_letter_hidden_words = []
+        self.__dictionary.set_already_used_five_letter_hidden_words([])
         self.assertFalse(self.__dictionary.is_hidden_word_already_used("about"))

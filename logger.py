@@ -12,7 +12,10 @@ class Logger(object):
         self.log_file_name = log_file_name
 
     def __str__(self):
-        return f"Module is {self.module_name} anf log file name is {self.log_file_name}"
+        return f"Module is {self.get_module_name()} anf log file name is {self.get_log_file()}"
+
+    def get_module_name(self):
+        return self.module_name
 
     def get_log_file(self):
         return self.log_file_name
@@ -30,7 +33,7 @@ class Logger(object):
             print(f"Can't open file {self.get_log_file()}")
         else:
             with log_file:
-                log_file.write(f'{datetime.now()} - {self.module_name} - {log_line}\n')
+                log_file.write(f'{datetime.now()} - {self.get_module_name()} - {log_line}\n')
         finally:
             log_file.close()
 

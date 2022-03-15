@@ -13,8 +13,11 @@ class UI(object):
         self.word_length = word_length
         self.__logger.log("Initializing UI")
 
+    def get_hidden_word_length(self):
+        return self.word_length
+
     def __str__(self):
-        return f"Hidden word length is {self.word_length}"
+        return f"Hidden word length is {self.get_hidden_word_length()}"
 
     @staticmethod
     def get_user_input():
@@ -101,7 +104,7 @@ class UI(object):
             True - if length is matching,
             False - if length is not matching
         """
-        return self.word_length == len(guessed_word)
+        return self.get_hidden_word_length() == len(guessed_word)
 
     @staticmethod
     def is_already_guessed_word(already_guessed_words: list[str], guessed_word: str):
