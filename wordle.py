@@ -2,6 +2,7 @@ from ui import UI
 from dictionary import Dictionary
 import unittest
 from logger import Logger
+from solver import Solver
 """
 Author - Deepti Agrawal
 Assignment 5 - Test automation using unit testing.
@@ -32,9 +33,11 @@ class Wordle(object):
                 "6": 0
             }
         }
+        self.solver = Solver()
 
     def __str__(self):
-        return f"Current Stats are - {self.stat}"
+        return f"Current Stats are - {self.stat}\n" \
+               f"Hints - {self.solver.__str__()}"
 
     def start_wordle_game(self):
         """
@@ -64,7 +67,8 @@ class Wordle(object):
         for trial in range(attempts_allowed):
             guessed_word = ui.get_word_from_user(guessed_words)
             guessed_words.append(guessed_word)  # keep track of guessed words
-
+            self.solver.solve(hidden_word, guessed_word)
+            print(f"Hints - {self.solver.__str__()}")
             # to determine letter is in the correct spot, incorrect spot, or not in any spot
             self.determine_accuracy_per_character(is_char_matched, hidden_word, guessed_word)
 
@@ -76,15 +80,15 @@ class Wordle(object):
                 break
             elif (trial + 1) == attempts_allowed:
                 self.__logger.log(f'Game Ended - You could not guess the hidden word in {attempts_allowed} attempts, '
-                                     f'Try luck other time!\n')
+                                  f'Try luck other time!\n')
                 print(f'Game Ended - You could not guess the hidden word in {attempts_allowed} attempts, '
                       f'Try luck other time!\n')
             else:
                 self.__logger.log(f"Guessed word did not matched at {is_char_matched} , "
-                                     f"attempt left {(attempts_allowed - trial - 1)}"
-                                     f", please try again! ")
-                print(f"Guessed word did not matched at {is_char_matched} , attempt left {(attempts_allowed - trial - 1)}"
-                      f", please try again! ")  # inform user which char are correct,
+                                  f"attempt left {(attempts_allowed - trial - 1)}, please try again! ")
+                print(f"Guessed word did not matched at {is_char_matched} , "
+                      f"attempt left {(attempts_allowed - trial - 1)}, please try again! ")
+                # inform user which char are correct,
                 # incorrect, or at wrong spot
         return won_game, guessed_in_trial
 
@@ -124,8 +128,9 @@ class Wordle(object):
         fstat["win_percent"] = (fstat["won_game"] * 100)/fstat["number_of_game_played"]
         if fguessed_in_trial > 0:
             fstat["guessDistribution"][str(fguessed_in_trial)] = fstat["guessDistribution"][str(fguessed_in_trial)] + 1
-        self.__logger.log(f'Number of Games Played {fstat["number_of_game_played"]}\nWin percentage {fstat["win_percent"]}%\n'
-              f'Guess Distribution {str(fstat["guessDistribution"])}\n')
+        self.__logger.log(f'Number of Games Played {fstat["number_of_game_played"]}\n'
+                          f'Win percentage {fstat["win_percent"]}%\n'
+                          f'Guess Distribution {str(fstat["guessDistribution"])}\n')
         print(f'Number of Games Played {fstat["number_of_game_played"]}\nWin percentage {fstat["win_percent"]}%\n'
               f'Guess Distribution {str(fstat["guessDistribution"])}\n')
 
@@ -157,7 +162,7 @@ class WordleTest (unittest.TestCase):
 
     def test_build_stat_positive(self) -> None:
         """determine accuracy of character in word"""
-        statInput = {
+        stat_input = {
             "number_of_game_played": 0,
             "won_game": 0,
             "win_percent": 0,
@@ -172,7 +177,7 @@ class WordleTest (unittest.TestCase):
                 "6": 0
             }
         }
-        statOutput = {
+        stat_output = {
             "number_of_game_played": 1,
             "won_game": 1,
             "win_percent": 100,
@@ -187,5 +192,5 @@ class WordleTest (unittest.TestCase):
                 "6": 0
             }
         }
-        self.__wordle.build_stat_and_print(statInput, 1, 5)
-        self.assertEquals(statInput, statOutput)
+        self.__wordle.build_stat_and_print(stat_input, 1, 5)
+        self.assertEquals(stat_input, stat_output)
