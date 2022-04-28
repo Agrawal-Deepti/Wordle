@@ -9,4 +9,4 @@ Wordle Game - This project has simplified version of the [Wordle game](https://w
 <p>After success or failure, user is presented with a new challenge (i.e., a new word is randomly selected from valid dictionary words) until the user gives an empty word to exit the program.
   
   <h1>How to Run Program</h1>
-  python HW03_Deepti_Agrawal_wordle.py
+  python wordle.py

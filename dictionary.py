@@ -23,7 +23,7 @@ class Dictionary(object):
         return f"Already used five letter hidden words are {self.get_already_used_five_letter_hidden_words()}"
 
     @staticmethod
-    def get_five_letter_words_from_file():
+    def get_five_letter_words_from_file() -> list[str]:
         """
         Filters 5-letter words from dictionary and return in array
         Parameters: None
@@ -39,7 +39,7 @@ class Dictionary(object):
             five_letter_words.append(line.strip().lower())
         return five_letter_words
 
-    def is_hidden_word_already_used(self, new_hidden_word):
+    def is_hidden_word_already_used(self, new_hidden_word) -> bool:
         if len(self.get_five_letter_words_from_file()) == len(self.get_already_used_five_letter_hidden_words()):
             self.set_already_used_five_letter_hidden_words([])
             Logger("dictionary").log(f'All hidden words are utilized, resetting already used five letter words!')
@@ -48,7 +48,7 @@ class Dictionary(object):
             self.add_already_used_five_letter_hidden_words(new_hidden_word)
         return is_already_used
 
-    def fetch_random_five_letter_word(self):
+    def fetch_random_five_letter_word(self) -> str:
         """
         Returns random 5-letter word from dictionary
         Parameters: None
@@ -62,7 +62,7 @@ class Dictionary(object):
             new_hidden_word = random.choice(five_letter_words)
         return new_hidden_word
 
-    def is_five_Letter_word_exist(self, word: str):
+    def is_five_Letter_word_exist(self, word: str) -> bool:
         """
         Checks if 5-letter word exist or not
         Parameters:

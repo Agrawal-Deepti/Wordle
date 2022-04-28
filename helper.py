@@ -3,16 +3,16 @@ from logger import Logger
 
 
 class Helper(object):
-    def __init__(self):
+    def __init__(self) -> None:
         self.logger = Logger('Helper')
         self.statistics = Statistics()
-        five_letter_words = self.statistics.get_five_letter_words_from_file_convert_to_tuple()
+        five_letter_words = self.statistics.get_five_letter_words_tuple()
         letter_occurrence_dict = self.statistics.generate_letter_occurrence(five_letter_words)
         letter_occurrence_dict = self.statistics.obtain_letter_likelihood(letter_occurrence_dict,
                                                                           len(five_letter_words))
         self.five_letter_word_ranks = self.statistics.generate_word_ranks(five_letter_words, letter_occurrence_dict)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Total five letter words with ranks are {len(self.get_five_letter_word_ranks())}"
 
     def get_five_letter_word_ranks(self):
@@ -22,7 +22,7 @@ class Helper(object):
         return self.five_letter_word_ranks
 
     @staticmethod
-    def is_input_provided(good_letters: str, bad_letters: str, position_of_letters: []):
+    def is_input_provided(good_letters: str, bad_letters: str, position_of_letters: []) -> bool:
         """
         Validates if input is provided or not
         :param good_letters: good letter string
@@ -50,7 +50,7 @@ class Helper(object):
         return is_input_provided
 
     @staticmethod
-    def is_input_valid(good_letters: str, bad_letters: str, position_of_letters: []):
+    def is_input_valid(good_letters: str, bad_letters: str, position_of_letters: []) -> bool:
         """
         Validates if input is correct like,
          good letters are not more than 5 char, not digit, is alpha
@@ -150,7 +150,7 @@ class Helper(object):
         self.logger.log(f"***********************************************")
         return sorted_final_possible_words_are
 
-    def filter_position_based_words(self, word_ranks: dict, position_of_letters: []):
+    def filter_position_based_words(self, word_ranks: dict, position_of_letters: []) -> dict:
         """
         Filters words based on position of letters
         :param word_ranks: dictionary of words to filter
@@ -175,7 +175,7 @@ class Helper(object):
         self.logger.log(f'Removing all words other than - {keep_words}')
         return {keep_word: word_ranks[keep_word] for keep_word in word_ranks if keep_word in keep_words}
 
-    def filter_bad_letter_words(self, word_ranks: dict, bad_letters: str):
+    def filter_bad_letter_words(self, word_ranks: dict, bad_letters: str) -> dict:
         """
         Filters words based on bad letters
         :param word_ranks: dictionary of words to filter
@@ -201,7 +201,7 @@ class Helper(object):
 
         return word_ranks
 
-    def filter_good_letter_words(self, word_ranks: dict, good_letters: str):
+    def filter_good_letter_words(self, word_ranks: dict, good_letters: str) -> dict:
         """
         Filters words based on good letters
         :param word_ranks: dictionary of words to filter
@@ -228,8 +228,8 @@ class Helper(object):
         return {good_word: word_ranks[good_word] for good_word in word_ranks if good_word in good_words}
 
 
+# For local run
 '''
-For local run
 helper = Helper()
 helper.search_possible_words_to_use("", "",['a','_','d','_'])
 '''

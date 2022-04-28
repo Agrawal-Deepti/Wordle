@@ -7,13 +7,13 @@ from logger import Logger
 class Utility(object):
     __logger = Logger("utility")
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.__logger.log("Initializing Utility")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "Initializing Utility"
 
-    def extract_fiveletterwords_and_create_newFile(self, five_letter_word_file_name):
+    def extract_fiveletterwords_and_create_newFile(self, five_letter_word_file_name) -> None:
         """
         Filters 5-letter words from dictionary and create new file and store 5-letter words in it
         Parameters: five_letter_word_file_name - file name

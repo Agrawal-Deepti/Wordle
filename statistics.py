@@ -8,14 +8,14 @@ from logger import Logger
 class Statistics(object):
     __logger = Logger("Statistics")
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.__logger.log("Initializing Statistics")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "statics can be found in wordRank.csv"
 
     @staticmethod
-    def get_five_letter_words_from_file_convert_to_tuple():
+    def get_five_letter_words_tuple() -> tuple:
         """
         This function fetches five-letter word list and convert it to tuple
         :return: tuple of file letter words
@@ -24,7 +24,7 @@ class Statistics(object):
         return tuple(dictionary.get_five_letter_words_from_file())
 
     @staticmethod
-    def generate_letter_occurrence(file_letter_words: tuple):
+    def generate_letter_occurrence(file_letter_words: tuple) -> dict:
         """
         This function obtain letter likelihood, counts the number of times a particular letter appears in
         a given index
@@ -42,7 +42,7 @@ class Statistics(object):
         return letter_occurrence_dict
 
     @staticmethod
-    def obtain_letter_likelihood(letter_occurrence_dict: dict, dictionary_count: int):
+    def obtain_letter_likelihood(letter_occurrence_dict: dict, dictionary_count: int) -> dict:
         """
         This function obtain letter likelihood using letter occurrence dict
         by dividing the count by the number of dictionary words
@@ -59,7 +59,7 @@ class Statistics(object):
         return letter_occurrence_dict
 
     @staticmethod
-    def sort_word_rank(word_ranks):
+    def sort_word_rank(word_ranks) -> list:
         """
         Sorts the dictionary by values and then keys
         :param word_ranks: dictionary of word and weight of letters' occurrence likelihood
@@ -68,7 +68,7 @@ class Statistics(object):
         return sorted(word_ranks.items(), key=lambda x: (-x[1], x[0]))
 
     @staticmethod
-    def write_letter_frequency(letter_occurrence_dict: dict, letter_frequency_file_name: str):
+    def write_letter_frequency(letter_occurrence_dict: dict, letter_frequency_file_name: str) -> None:
         """
         writes letter frequency to file
         :param letter_occurrence_dict: occurrence dictionary
@@ -86,9 +86,9 @@ class Statistics(object):
             letter_frequency_file.close()
 
     @staticmethod
-    def generate_word_ranks(five_letter_words, letter_occurrence_dict: dict):
+    def generate_word_ranks(five_letter_words, letter_occurrence_dict: dict) -> dict:
         """
-        Calculate word's weight by multiplying each of its letters' occurrence likelihood.
+        Calculate words weight by multiplying each of its letter occurrence likelihood
         :param five_letter_words: all dictionary words
         :param letter_occurrence_dict: occurrence dictionary
         :return: dictionary of word rank
@@ -101,7 +101,7 @@ class Statistics(object):
             word_ranks[word] = rank
         return word_ranks
 
-    def write_word_rank(self, word_ranks: dict, word_rank_file_name:str):
+    def write_word_rank(self, word_ranks: dict, word_rank_file_name: str) -> None:
         """
         Writes word rank to file
         :param word_ranks: dictionary of word rank
@@ -123,7 +123,7 @@ class Statistics(object):
         Generate occurrence and rank and writes to file
         :return: None
         """
-        five_letter_words = self.get_five_letter_words_from_file_convert_to_tuple()
+        five_letter_words = self.get_five_letter_words_tuple()
         letter_occurrence_dict = self.generate_letter_occurrence(five_letter_words)
         letter_occurrence_dict = self.obtain_letter_likelihood(letter_occurrence_dict, len(five_letter_words))
         self.write_letter_frequency(letter_occurrence_dict, "letterFrequency.csv")
@@ -139,12 +139,12 @@ if __name__ == "__main__":
 class StatisticsTest (unittest.TestCase):
     __statistics = Statistics()
 
-    def test_get_five_letter_words_from_file_convert_to_tuple_instance_positive(self) -> None:
+    def test_get_five_letter_words_tuple_instance_positive(self) -> None:
         """
         test list is getting converted to tuple correctly
         :return: None
         """
-        self.assertTrue(type(self.__statistics.get_five_letter_words_from_file_convert_to_tuple()), tuple)
+        self.assertTrue(type(self.__statistics.get_five_letter_words_tuple()), tuple)
 
     def test_generate_letter_occurrence_positive(self) -> None:
         """
@@ -211,7 +211,7 @@ class StatisticsTest (unittest.TestCase):
 
     def test_generate_word_ranks_Negative(self) -> None:
         """
-        test word rank doesn't get's calculated incorrectly
+        test word rank doesn't get calculated incorrectly
         :return: None
         """
         test_file_path = 'testLetterFrequency.txt'

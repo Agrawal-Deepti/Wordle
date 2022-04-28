@@ -5,7 +5,6 @@ from logger import Logger
 from solver import Solver
 """
 Author - Deepti Agrawal
-Assignment 5 - Test automation using unit testing.
 
 Design a program that would allow a user to enter their word as an input, and then indicate whether the letters matched
 with the expected 5 letter words from dictionary 
@@ -17,7 +16,7 @@ and keep words.txt in workspace to make program work
 class Wordle(object):
     __logger = Logger("Wordle")
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.stat = {
             "number_of_game_played": 0,
             "won_game": 0,
@@ -35,11 +34,11 @@ class Wordle(object):
         }
         self.solver = Solver()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"Current Stats are - {self.stat}\n" \
                f"Hints - {self.solver.__str__()}"
 
-    def start_wordle_game(self):
+    def start_wordle_game(self) -> tuple:
         """
         Main method to start game. Fetches hidden word, finds user input is valid, determines char location is correct
         or not and displays appropriate message to user
@@ -63,6 +62,7 @@ class Wordle(object):
 
         attempts_allowed = 6  # allowed attempt to guess hidden word
         guessed_in_trial = 0
+        self.solver = Solver()
         ui = UI(len(hidden_word))
         for trial in range(attempts_allowed):
             guessed_word = ui.get_word_from_user(guessed_words)
@@ -93,7 +93,7 @@ class Wordle(object):
         return won_game, guessed_in_trial
 
     @staticmethod
-    def determine_accuracy_per_character(is_char_matched, hidden_word: str, guessed_word: str):
+    def determine_accuracy_per_character(is_char_matched, hidden_word: str, guessed_word: str) -> None:
         """
         Determines accuracy of each char in guessed word
             - correct spot - letter itself
@@ -120,7 +120,7 @@ class Wordle(object):
             else:
                 is_char_matched[index] = '"'  # not in any spot
 
-    def build_stat_and_print(self, fstat, fwon_game: int, fguessed_in_trial: int):
+    def build_stat_and_print(self, fstat, fwon_game: int, fguessed_in_trial: int) -> None:
         fstat["won_game"] = fstat["won_game"] + fwon_game
         fstat["number_of_game_played"] = fstat["number_of_game_played"] + 1
         fstat["current_streak"] = fstat["won_game"]
@@ -134,7 +134,7 @@ class Wordle(object):
         print(f'Number of Games Played {fstat["number_of_game_played"]}\nWin percentage {fstat["win_percent"]}%\n'
               f'Guess Distribution {str(fstat["guessDistribution"])}\n')
 
-    def start(self):
+    def start(self) -> None:
         while True:  # After success or failure, user will be presented with a new challenge
             won_game, guessed_in_trial = self.start_wordle_game()
             self.build_stat_and_print(self.stat, won_game, guessed_in_trial)

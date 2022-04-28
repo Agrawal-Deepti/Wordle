@@ -9,18 +9,18 @@ class UI(object):
     __logger = Logger("UI")
     __dictionary = Dictionary()
 
-    def __init__(self, word_length: int):
+    def __init__(self, word_length: int) -> None:
         self.word_length = word_length
         self.__logger.log("Initializing UI")
 
-    def get_hidden_word_length(self):
+    def get_hidden_word_length(self) -> int:
         return self.word_length
 
     def __str__(self):
         return f"Hidden word length is {self.get_hidden_word_length()}"
 
     @staticmethod
-    def get_user_input():
+    def get_user_input() -> str:
         """
         Reads input from user and convert it to lower case
         Parameters: None
@@ -28,7 +28,7 @@ class UI(object):
         """
         return input("Enter your word as an input to guess:").lower()
 
-    def get_word_from_user(self, guessed_words: list[str]):
+    def get_word_from_user(self, guessed_words: list[str]) -> str:
         """
         Validate user inputter word, validate -
             empty string,
@@ -84,7 +84,7 @@ class UI(object):
             self.__logger.log(f'User input error')
 
     @staticmethod
-    def is_input_empty(guessed_word: str):
+    def is_input_empty(guessed_word: str) -> bool:
         """
         Checks if guessed word is empty or not
         Parameters:
@@ -95,7 +95,7 @@ class UI(object):
         """
         return guessed_word == "" or guessed_word is None
 
-    def is_word_length_matching_with_hidden_word(self, guessed_word: str):
+    def is_word_length_matching_with_hidden_word(self, guessed_word: str) -> bool:
         """
         Checks if guessed word length is matching with hidden word or not
         Parameters:
@@ -107,7 +107,7 @@ class UI(object):
         return self.get_hidden_word_length() == len(guessed_word)
 
     @staticmethod
-    def is_already_guessed_word(already_guessed_words: list[str], guessed_word: str):
+    def is_already_guessed_word(already_guessed_words: list[str], guessed_word: str) -> bool:
         """
         Checks if guessed word is in already guessed words
         Parameters:
@@ -120,7 +120,7 @@ class UI(object):
         return guessed_word in already_guessed_words
 
     @staticmethod
-    def is_word_contain_digit(word: str):
+    def is_word_contain_digit(word: str) -> bool:
         """
         Checks if guessed word contain number
         Parameters:
@@ -131,7 +131,7 @@ class UI(object):
         """
         return any(char.isdigit() for char in word)
 
-    def is_word_contains_in_dictionary(self, word: str):
+    def is_word_contains_in_dictionary(self, word: str) -> bool:
         """
         Checks if guessed word contain in 5-letter dictionary words
         Parameters:
