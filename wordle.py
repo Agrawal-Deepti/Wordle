@@ -3,6 +3,9 @@ from dictionary import Dictionary
 import unittest
 from logger import Logger
 from solver import Solver
+from database import Database
+import socket
+
 """
 Author - Deepti Agrawal
 
@@ -33,6 +36,7 @@ class Wordle(object):
             }
         }
         self.solver = Solver()
+        self.database = Database()
 
     def __str__(self) -> str:
         return f"Current Stats are - {self.stat}\n" \
@@ -46,6 +50,8 @@ class Wordle(object):
         Returns: None
         """
         # Hidden word to guess
+        game_details = []
+        ip = socket.gethostbyname(socket.gethostname())
         print('\nStarting New Game, Good Luck!')
         self.__logger.log("*********************NEW GAME STARTED******************")
         self.__logger.log(f'Starting New Game, Good Luck!')
@@ -53,7 +59,7 @@ class Wordle(object):
         dictionary = Dictionary()
         hidden_word = dictionary.fetch_random_five_letter_word().lower()  # Hidden word to guess
         self.__logger.log(f'Hidden word is - {hidden_word}')
-
+        game_id = self.database.logGameInDatabase(ip, hidden_word)
         guessed_words = []  # Guessed words to cover scenario if user enters any prior word,
         # they are warned to enter a new word without reducing from the word count.
 
@@ -77,19 +83,23 @@ class Wordle(object):
                 print(f'You guessed the correct hidden word in {(trial + 1)} trials! \n')
                 won_game = 1
                 guessed_in_trial = trial + 1
+                self.database.logGameDetailsInDatabase(game_id, trial + 1, guessed_word, 'Y', self.solver.__str__())
                 break
             elif (trial + 1) == attempts_allowed:
                 self.__logger.log(f'Game Ended - You could not guess the hidden word in {attempts_allowed} attempts, '
                                   f'Try luck other time!\n')
                 print(f'Game Ended - You could not guess the hidden word in {attempts_allowed} attempts, '
                       f'Try luck other time!\n')
+                self.database.logGameDetailsInDatabase(game_id, trial + 1, guessed_word, 'N', self.solver.__str__())
             else:
                 self.__logger.log(f"Guessed word did not matched at {is_char_matched} , "
                                   f"attempt left {(attempts_allowed - trial - 1)}, please try again! ")
                 print(f"Guessed word did not matched at {is_char_matched} , "
                       f"attempt left {(attempts_allowed - trial - 1)}, please try again! ")
+                self.database.logGameDetailsInDatabase(game_id, trial + 1, guessed_word, 'N', self.solver.__str__())
                 # inform user which char are correct,
                 # incorrect, or at wrong spot
+
         return won_game, guessed_in_trial
 
     @staticmethod
